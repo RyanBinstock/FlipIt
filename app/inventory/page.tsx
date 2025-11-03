@@ -1,10 +1,10 @@
 import Header from "@/components/header";
 
-export default function Home() {
+export default function InventoryPage() {
   return (
     <>
       <Header />
-      <main className="">Home page!</main>;
+      <div>Welcome to your inventory!</div>
     </>
   );
 }
