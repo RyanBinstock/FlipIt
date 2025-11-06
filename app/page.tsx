@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="">Home page!</main>;
+      <main className="">Home page!</main>
     </>
   );
 }
