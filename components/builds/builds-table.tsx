@@ -43,13 +43,13 @@ export default function BuildsTable({ builds }: { builds: Build[] }) {
                     <StatusBadge status={status} />
                   </td>
                   <td className="p-3 text-muted-foreground">
-                    {formatDate(build.date_listed) || ""}
+                    {formatDate(build.date_listed) || "Not Listed"}
                   </td>
                   <td className="p-3 text-muted-foreground">
-                    {formatDate(build.date_sold) || ""}
+                    {formatDate(build.date_sold) || "Not Sold"}
                   </td>
                   <td className="p-3 text-muted-foreground">
-                    {formatCurrency(build.sold_price) || ""}
+                    {formatCurrency(build.sold_price) || formatCurrency(0)}
                   </td>
                   <td className="p-3">
                     <div className="flex justify-end">
