@@ -24,7 +24,8 @@ export async function getComponentsByBuildId(buildId: string) {
       build_id,
       parts!inner(part_name),
       vendors!inner(vendor_name),
-      component_conditions!inner(condition_status)`
+      component_conditions!inner(condition_status), 
+      user_id`
     )
     .eq("build_id", buildId);
 
