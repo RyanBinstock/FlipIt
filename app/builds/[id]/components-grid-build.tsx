@@ -100,10 +100,9 @@ export function ComponentsGruidBuild({
                 </thead>
                 <tbody>
                   {components.map((component) => {
-                    const partName = component.parts.part_name;
-                    const vendorName = component.vendors.vendor_name;
-                    const conditionStatus =
-                      component.component_conditions.condition_status;
+                    const partName = component.part;
+                    const vendorName = component.vendor;
+                    const conditionStatus = component.condition_status;
 
                     return (
                       <tr

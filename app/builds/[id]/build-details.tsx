@@ -3,7 +3,6 @@ import { ComponentsGruidBuild } from "./components-grid-build";
 
 export default async function BuildDetails({ id }: { id: string }) {
   const { build, components, error } = await getBuildWithComponents(id);
-  console.log(components);
   if (error || !build) {
     console.log(error);
     return (
@@ -14,5 +13,5 @@ export default async function BuildDetails({ id }: { id: string }) {
       </div>
     );
   }
-  return <ComponentsGruidBuild build={build} components={components ?? []} />;
+  return <ComponentsGruidBuild build={build} components={components || []} />;
 }

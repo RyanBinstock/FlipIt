@@ -1,3 +1,4 @@
+import BuildDetails from "@/app/builds/[id]/build-details";
 import { createClient } from "@/lib/supabase/server";
 
 export async function getBuildById(id: string) {
@@ -23,13 +24,30 @@ export async function getComponentsByBuildId(buildId: string) {
       details,
       build_id,
       parts!inner(part_name),
-      vendors!inner(vendor_name),
-      component_conditions!inner(condition_status), 
+      vendors(vendor_name),
+      component_conditions(condition_status), 
       user_id`
     )
     .eq("build_id", buildId);
-
-  return { components, error };
+  console.log(components);
+  const flattenedComponents = components?.map((component) => {
+    return {
+      id: component.id,
+      name: component.name,
+      price: component.price,
+      details: component.details,
+      build_id: component.build_id,
+      user_id: component.user_id,
+      // @ts-expect-error - parts will always be an object
+      part: component.parts.part_name || "",
+      // @ts-expect-error - vendors will always be an object
+      vendor: component.vendors.vendor_name || "",
+      //@ts-expect-error - component_conditions will always be an object
+      condition_status: component.component_conditions.condition_status || "",
+    };
+  });
+  console.log(flattenedComponents);
+  return { components: flattenedComponents, error };
 }
 
 export async function getBuildWithComponents(buildId: string) {
