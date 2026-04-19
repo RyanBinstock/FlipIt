@@ -1,7 +1,16 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { Build } from "@/app/models/build";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import StatusBadge from "./status-badge";
+import { AddBuildForm } from "./add-build-form";
 import { formatCurrency } from "@/app/utils/money";
 import { formatDate } from "@/app/utils/date";
 
@@ -16,9 +25,21 @@ function getBuildStatus(build: Build): "sold" | "listed" | "in-progress" {
 }
 
 export default function BuildsTable({ builds }: { builds: Build[] }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="w-full px-10 py-6">
       <div className="overflow-x-auto border-x border-border rounded-lg shadow-sm bg-background">
+        <div className="flex justify-end">
+          <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <DialogTrigger asChild>
+              <Button className="m-4 self-end">Add Build</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <AddBuildForm onClose={() => setIsOpen(false)} />
+            </DialogContent>
+          </Dialog>
+        </div>
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b">
