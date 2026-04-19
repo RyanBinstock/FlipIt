@@ -1,4 +1,3 @@
-import BuildDetails from "@/app/builds/[id]/build-details";
 import { createClient } from "@/lib/supabase/server";
 
 export async function getBuildById(id: string) {
@@ -26,7 +25,7 @@ export async function getComponentsByBuildId(buildId: string) {
       parts!inner(part_name),
       vendors(vendor_name),
       component_conditions(condition_status), 
-      user_id`
+      user_id`,
     )
     .eq("build_id", buildId);
   console.log(components);
@@ -52,9 +51,8 @@ export async function getComponentsByBuildId(buildId: string) {
 
 export async function getBuildWithComponents(buildId: string) {
   const { build, error: buildError } = await getBuildById(buildId);
-  const { components, error: componentsError } = await getComponentsByBuildId(
-    buildId
-  );
+  const { components, error: componentsError } =
+    await getComponentsByBuildId(buildId);
 
   if (buildError || componentsError) {
     return {
@@ -76,4 +74,34 @@ export async function getPartById(id: string) {
     .single();
 
   return { data, error };
+}
+
+export async function getAllParts() {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("parts")
+    .select("id, part_name")
+    .order("part_name");
+
+  return { parts: data || [], error };
+}
+
+export async function getAllVendors() {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("vendors")
+    .select("id, vendor_name")
+    .order("vendor_name");
+
+  return { vendors: data || [], error };
+}
+
+export async function getAllComponentConditions() {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("component_conditions")
+    .select("id, condition_status")
+    .order("condition_status");
+
+  return { conditions: data || [], error };
 }

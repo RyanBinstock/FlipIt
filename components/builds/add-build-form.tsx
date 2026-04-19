@@ -14,14 +14,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 
-export function AddBuildForm({
-  onClose,
-}: {
-  onClose: () => void;
-}) {
+export function AddBuildForm({ onClose }: { onClose: () => void }) {
   const [name, setName] = useState("");
   const [status, setStatus] = useState<"In progress" | "Listed" | "Sold">(
-    "In progress",
+    "In progress"
   );
   const [dateListed, setDateListed] = useState("");
   const [dateSold, setDateSold] = useState("");
@@ -60,9 +56,7 @@ export function AddBuildForm({
     <Card>
       <CardHeader>
         <CardTitle className="text-2xl">Add Build</CardTitle>
-        <CardDescription>
-          Enter the details for your new build
-        </CardDescription>
+        <CardDescription>Enter the details for your new build</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit}>
@@ -84,13 +78,11 @@ export function AddBuildForm({
               <select
                 id="status"
                 className={cn(
-                  "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+                  "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
                 )}
                 value={status}
                 onChange={(e) =>
-                  setStatus(
-                    e.target.value as "In progress" | "Listed" | "Sold",
-                  )
+                  setStatus(e.target.value as "In progress" | "Listed" | "Sold")
                 }
               >
                 <option value="In progress">In progress</option>
@@ -104,7 +96,7 @@ export function AddBuildForm({
                 <Label htmlFor="dateListed">List Date</Label>
                 <Input
                   id="dateListed"
-                  type="datetime-local"
+                  type="date"
                   required
                   value={dateListed}
                   onChange={(e) => setDateListed(e.target.value)}
@@ -118,7 +110,7 @@ export function AddBuildForm({
                   <Label htmlFor="dateSold">Sold Date</Label>
                   <Input
                     id="dateSold"
-                    type="datetime-local"
+                    type="date"
                     required
                     value={dateSold}
                     onChange={(e) => setDateSold(e.target.value)}
@@ -160,4 +152,5 @@ export function AddBuildForm({
     </Card>
   );
 }
+
 

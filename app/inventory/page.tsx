@@ -4,7 +4,7 @@ export default function InventoryPage() {
   return (
     <>
       <Header />
-      <div>Welcome to your inventory!</div>
+      <div>Page under construction</div>
     </>
   );
 }
