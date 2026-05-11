@@ -95,7 +95,7 @@ export async function createComponent(formData: FormData) {
   // Validate required fields
   if (!name || !price || !partId || !vendorId || !conditionId || !buildId) {
     throw new Error(
-      "Name, price, part, vendor, condition, and build are required"
+      "Name, price, part, vendor, condition, and build are required",
     );
   }
 
@@ -185,7 +185,7 @@ export async function updateComponent(componentId: string, formData: FormData) {
     throw new Error("Name, price, part, vendor, and condition are required");
   }
 
-  // Parse price
+  // Parse price.
   const priceValue = parseFloat(price);
   if (isNaN(priceValue) || priceValue < 0) {
     throw new Error("Price must be a valid positive number");
